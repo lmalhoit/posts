@@ -20,6 +20,13 @@ class TestAPI(unittest.TestCase):
         # Set up the tables in the database
         Base.metadata.create_all(engine)
 
+    def test_get_empty_posts(self):
+        response = self.client.get("/api/posts")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.mimetype, "application/json")
+        data = json.loads(response.data)
+        self.assertEqual(data, [])
+
     def tearDown(self):
         """ Test teardown """
         session.close()
