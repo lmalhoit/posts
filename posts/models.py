@@ -18,7 +18,7 @@ class Post(Base):
 
     id = Column(Integer, primary_key=True)
     title = Column(String(1024))
-    content = Column(Text)
+    body = Column(Text)
     datetime = Column(DateTime, default=datetime.datetime.now)
     author_id = Column(Integer, ForeignKey('users.id'))
 
@@ -26,7 +26,7 @@ class Post(Base):
         post = {
             "id": self.id,
             "title": self.title,
-            "body": self.content
+            "body": self.body
         }
         return post
 
